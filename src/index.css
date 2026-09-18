@@ -1,0 +1,160 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+:root {
+  --ink: #17151A;
+  --paper: #FAF8F5;
+  --lavender: #B99CFF;
+  --rose: #F3A6B8;
+  --peach: #FFCFB3;
+  --flutter: #54C5F8;
+}
+
+/* Base resets & smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: #FAF8F5;
+  color: #17151A;
+  overflow-x: hidden;
+  position: relative;
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+}
+
+/* Subtle paper texture noise */
+.paper-noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F5F2EC;
+}
+::-webkit-scrollbar-thumb {
+  background: #D9CAFF;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B99CFF;
+}
+
+/* Glass panel utility */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 20px 40px -15px rgba(23, 21, 26, 0.06);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(23, 21, 26, 0.06);
+}
+
+.glass-dark {
+  background: rgba(23, 21, 26, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* 3D Perspective container */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-1500 {
+  perspective: 1500px;
+}
+
+.perspective-2000 {
+  perspective: 2000px;
+}
+
+/* Gradient text utilities */
+.text-gradient-primary {
+  background: linear-gradient(135deg, #17151A 0%, #615C6B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-editorial {
+  background: linear-gradient(135deg, #17151A 20%, #B99CFF 70%, #F3A6B8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Hardware accelerated layer */
+.gpu-accel {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Pulse beacon indicator */
+@keyframes beaconPulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(84, 197, 248, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 8px rgba(84, 197, 248, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(84, 197, 248, 0);
+  }
+}
+
+.beacon-active {
+  animation: beaconPulse 2s infinite cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+/* Custom cursor styling (hidden on touch) */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: default;
+  }
+  
+  a, button, input, textarea, select, [role="button"] {
+    cursor: pointer;
+  }
+}
+
+/* Code block styling */
+pre code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+/* Teardown line styling */
+.teardown-line-active {
+  position: relative;
+}
+.teardown-line-active::before {
+  content: '';
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, #B99CFF, #F3A6B8);
+  top: 50%;
+}
